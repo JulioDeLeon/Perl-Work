@@ -1,0 +1,27 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+use IO::File;
+
+die "ERR: USUAGE: $0 <File input> $!\n" if @ARGV != 1;
+
+my %outputs;
+
+while(<>){
+	chomp;
+	my ($pkey, $pval) = split /:\s+/;
+	#print "This key: $pkey, This val: $pval\n";
+	
+	if(!defined $outputs{$pkey} ){
+		$outputs{$pkey} = IO::File->new( $pkey.".info", 'w');
+	}
+	
+	$outputs{$pkey}->print("$pkey : $pval \n"); 
+}
+
+
+foreach ( keys %outputs){
+	$outputs{$_}->close;
+}

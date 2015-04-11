@@ -1,0 +1,15 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+sub gen_fun {
+	my $closed_var = 0;
+	return  (sub{++$closed_var}, sub{--$closed_var}, sub{$closed_var});
+}
+
+my ($inc, $dec, $get) = gen_fun;
+
+&$inc;
+print "Counter: " .  &$get;
+&$dec;

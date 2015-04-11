@@ -1,0 +1,21 @@
+#!/bin/perl -T
+use v5.18;
+use strict;
+use warnings;
+use Scalar::Util qw(tainted);
+use File::Spec;
+
+
+#notice in the shebang line that the 'Taint Checking' flag has been set.
+#the taint flag will not let Perl use any external programs, this is done for sercurity purpose
+
+#system qq|echo "ARGS are -> @ARGV"|;
+
+#when you try to run this program, it will fail because is calling 'echo', an external program
+
+
+#this one won't work
+print "ARGV is tainted\n" if tainted(@ARGV);
+
+#this will work
+print "Argument [$ARGV[0]] is tainted \n" if tainted($ARGV[0]);

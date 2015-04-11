@@ -1,0 +1,29 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+die "ERR: USAUGE: $0 <filename> $!\n" if @ARGV != 1;
+my @words;
+
+while(<>){
+	chomp;
+	push @words, $_;
+}
+#print "@words";
+
+sub transform {
+	my $wd = shift;
+	$wd =~ tr/A-Z/a-z/;
+	$wd =~ tr/a-z//cd;
+	return $wd;
+}
+
+my @sorted_words = 
+	map $_->[0],
+	sort { $a->[1] cmp $b->[1]}
+	map [$_, transform($_)], @words;
+	 
+#write a subroutine that will convert a string to its basic form
+#		no space and no caps and only letters;
+print "$_\n" foreach(@sorted_words);

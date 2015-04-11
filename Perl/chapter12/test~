@@ -1,0 +1,32 @@
+#!/bin/perl -w 
+use strict;
+
+#my $file = shift @ARGV;
+#die "usage: $0 filname" if !(defined $file);
+
+
+foreach (@ARGV){
+#-d $_ and print "d";
+#-r $_ and print "r";
+#-w $_ and print "w";
+#-x $_ and print "x";
+if(!-e $_) { print "does not exist!\n"; next;}
+if(-d $_){ print "d";} else {print "-";}
+if(-R $_){ print "r";} else {print "-";}
+if(-W $_){ print "w";} else {print "-";}
+if(-X $_){ print "x";} else {print "-";}
+if(-O $_){ print "o";} else {print "-";}
+if(-r $_){ print "r";} else {print "-";}
+if(-w $_){ print "w";} else {print "-";}
+if(-x $_){ print "x";} else {print "-";}
+if(-o $_){ print "o";} else {print "-";}
+print " $_\n";
+}
+
+my $timeS = 1180630098;
+my $date = localtime $timeS;
+print $date . "\n";
+
+my($sec, $min, $hour, $day, $mnth, $year, $wday, $yday, $isdst) = $date;
+
+# DRWXRWXRWXL

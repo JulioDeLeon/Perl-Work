@@ -1,0 +1,25 @@
+#!/bin/perl -w
+use strict;
+
+use File::Basename;
+use File::Spec;
+my $flag = ($ARGV[0] =~ /\A-s\Z/)? 1 : undef;
+my $file;
+my $path;
+if (!defined $flag){
+	 $file = ( defined $ARGV[0] )? $ARGV[0] : undef;
+	 $path = ( defined $ARGV[1] )? $ARGV[1] : undef;
+}else {
+	 $file = ( defined $ARGV[1] )? $ARGV[1] : undef;
+	 $path = ( defined $ARGV[2] )? $ARGV[2] : undef;
+
+}
+die "ERR: USAGE: $0 <in file> <out file/dir>\n" if (!defined $file || !defined $path);
+
+
+if ($flag){
+	symlink $file, $path or die "Cannot mv $file to $path\n";
+}else {
+	link $file, $path or die "Cannot mv $file to $path\n";
+}
+

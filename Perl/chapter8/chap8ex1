@@ -1,0 +1,18 @@
+#!/usr/bin/perl -w
+use 5.010;
+
+=begin intro 
+	For this exercise, show strings that have 'match' in it
+=cut intro
+
+while(<>)
+{
+	chomp;
+	if( /(match)/ ) #adding i at the end of the reg makes it case insensitive
+	{
+		print "Matched : |$`<$&>$'|\n";
+	}else
+	{
+		print "No Match: |$_|\n";	
+	}
+}

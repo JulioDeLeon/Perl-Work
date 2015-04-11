@@ -1,0 +1,11 @@
+#!/bin/perl -w
+use v5.18;
+use strict;
+use Regexp::Assemble;
+
+my $ra = Regexp::Assemble->new;
+
+for( 'Mr. Howell', 'Mrs. Howell', 'Mary Ann') {
+	$ra->add("\Q$_");
+}
+

@@ -1,0 +1,39 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+use IO::Tee;
+use IO::File;
+
+die "ERR: USUAGE: $0 < [filename of outputs] > $!\n" if @ARGV <= 0;
+
+sub get_files {
+	my @file_refs;
+	
+	foreach(@ARGV){
+		if($_ =~ "STDOUT"){
+			push( @file_refs, IO::File->new(*STDOUT, 'w'))
+			or die  "Could not open $_ $!\n";
+			next;
+		}
+		
+		push( @file_refs, IO::File->new($_, 'w'))
+			or die  "Could not open $_ $!\n";
+	}
+	
+	@file_refs;
+}
+
+
+my @files = &get_files;
+
+my $outputs = IO::Tee->new(@files);
+my($sec, $min, $hour, $day, $mon, $yr, $dow) = localtime;
+my $date = "$mon/$day/$yr"; 
+
+$outputs->print($date);
+
+
+print "@files";
+print "$outputs";

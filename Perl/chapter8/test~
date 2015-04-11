@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+
+$_ = "Hello There, Neighbor";
+
+if(/\s([a-zA-Z]+),/)
+{
+	print "the word was $1\n";
+}

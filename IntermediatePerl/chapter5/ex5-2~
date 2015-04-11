@@ -1,0 +1,36 @@
+#!/bin/perl
+use strict;
+use warnings;
+
+my %someHash;
+my $all = "**all**";
+while(<>){
+	if( !($_ =~ /^#/) ){
+		my ($source, $dest, $num) = split;
+		$someHash{$source}{$dest} += $num;
+		$someHash{$source}{$all} += $num;
+	}
+}
+
+
+my @sources = sort{ $someHash{$b}{$all} <=> $someHash{$a}{$all} } keys %someHash;
+
+
+
+
+for my $source (@sources){
+	my @destination = 
+		sort {$someHash{$source}{$b} <=> $someHash{$source}{$a} }
+		keys %{ $someHash{$source} };
+		
+	print "$source: $someHash{$source}{$all} total bytes sent \n";
+	
+	for my $destination (@destination){
+		next if $destination eq $all; 
+		print " $source => $destination: ", " $someHash{$some}{$destination} bytes";
+	}
+	
+	print "\n";
+}
+	
+

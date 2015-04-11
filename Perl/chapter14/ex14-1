@@ -1,0 +1,15 @@
+#!/bin/perl -w 
+use strict;
+
+
+die "ERR: USAGE: $0 <array of numbers> \n" if !defined $ARGV[0];
+
+my @nums = sort {$a <=> $b} @ARGV;
+my $longest = 0;
+foreach (@nums) {
+	$longest = (length $_ > $longest)? (length $_) : $longest;
+}
+
+foreach (@nums){
+	print " " x ($longest - length $_) . $_ . "\n";
+}

@@ -1,0 +1,18 @@
+#!/usr/bin/perl -w
+use 5.0.10;
+use strict;
+
+
+$^I = "~";
+
+my $lastline = undef;
+
+while (<>)
+{
+	
+	if(/\A#!/) #is if the shebang line?
+	{
+		$_.="## Copyright (C) 2014 by Julio de Leon \n";
+	}
+	print;
+}

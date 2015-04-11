@@ -1,0 +1,11 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+print "Trying negative lookahead assertion: \n";
+while(<>){
+	print if /\bPerl(?!\s?6)\b/;
+}
+
+

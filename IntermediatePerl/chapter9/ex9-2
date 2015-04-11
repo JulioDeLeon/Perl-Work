@@ -1,0 +1,27 @@
+#!/bin/perl -w
+use v5.18;
+use strict;
+
+use List::Tuples;
+
+die "Err: Usuage: $0 <filename> $!\n" if @ARGV != 1;
+
+
+#load up an array of regex patterns
+my @patterns;
+while(<>){
+	chomp;
+	#print $.; #this is the line number
+	@patterns[$. -1] = $_;
+}
+
+
+while(<STDIN>){
+	chomp;
+	my $word = $_;
+	
+	
+	foreach(@patterns){
+		print "You have matched $& with \n\t $`<$&>$'\n" if $word =~ $_;
+	}
+}

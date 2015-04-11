@@ -1,0 +1,29 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+sub isbn_regex {
+
+    qr/ \A
+        (\d+)   #group
+            -
+        (\d+)   #publisher
+            -
+        (\d+)   #item
+            -
+        ([\dX])
+        \Z    
+    /ix 
+}
+
+
+#get the regex into a scalar
+my $regex = &isbn_regex;
+my $isbn = "dfasd;";
+if ($isbn =~ $regex) {
+    print "Matched!!";
+}else {
+    print "No Match";
+}
+    

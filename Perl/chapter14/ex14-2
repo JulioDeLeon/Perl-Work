@@ -1,0 +1,30 @@
+#!/bin/perl -w 
+use strict;
+
+die "ERR: USAGE: $0 <filename> \n" if !defined $ARGV[0];
+my %names;
+while (<>) {
+	#split the string by the space;
+	#my $where = index $_, " ";
+	my( $first, $last) = split " ";
+	$names{$first} = $last;
+}
+
+
+
+while ( my( $key, $value) = each( %names) ){
+	print "Hash[$key] => $value\n";
+}
+
+
+sub by_nh {
+	"\L$names{$a}" cmp "\L$names{$b}"
+	or
+	"\L$a" cmp "\L$b"
+}
+
+my @list = sort by_nh keys %names;
+
+foreach (@list) {
+	print "$_  $names{$_}  \n";
+}

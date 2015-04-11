@@ -1,0 +1,257 @@
+# use warnings;
+# use diagnostics;
+print "Hello World\n";
+
+#example of string concatination
+print "hello" . "world\n";
+
+#example of string multiplication
+print "hello\n" x 3;
+
+
+#---------------------------------------
+#strings and numbers are interchangable
+print "Z" . 5 ."\n";
+#Z5
+
+print "Z" . 5*7 . "\n";
+#Z35
+
+#----------------------------------------
+#SCALAR Variables
+#these are types of variables that can hold multiple types of variables
+print "\nScalar variable exampes \n";
+
+$fred = 4;
+print $fred. "\n";
+#the dollar sign symbolizes the start of the variables
+
+print "\n String minipulation \n";
+# how you use variables in a string
+$meal = "steak";
+$barney = "fred ate a $meal";
+$barney = "fred ate a " . $meal;
+
+$literal = "fred is a \$meal \n";
+
+$alef = chr( 0x05D0 );
+$alpha = chr( hex( '03B1' ) );
+$omega = chr( 0x03C9 );
+
+print $alef."\n";
+print $alpha."\n";
+print $omega."\n";
+
+$sometext = "this is a line\n";
+chomp($sometext);
+#chomp gets rid of the newline at the end of a string
+
+$string = "some stuff";
+
+$string .= "other stuff\n"; 
+# this will concat and assign to a string 
+
+print $string;
+
+#----------------------------------------------------------------------------
+#array notations
+print "\nBasic array Notations \n";
+
+@rocks = qw/ bedrock slate lava/;
+@tiny = ();
+@big = 1 .. 1e5; #1000 elements
+@stuff = (@giant, undef, @giant); #2000 elements
+$dino = "granite";
+@quarry = (@rocks, "crushed rock", @tiny, $dino);
+
+
+print "\nPush-Pop operations on arrays \n";
+@array = 5 .. 9;
+$fred = pop @array;
+print $fred . "\n";
+
+print "\@array: @array \n";
+$barney = pop @array;
+print $barney . "\n";
+print "\@array: @array \n";
+
+push @array, 360;
+print "\@array: @array \n";
+
+push @array, 1..10;
+print "\@array: @array \n";
+
+push @array, qw/ 16 45 98/;
+print "\@array: @array \n";
+
+
+print "\@array[2]: @array[2] \n";
+
+
+#array with shift operation
+print "\nShift operations on arrays \n";
+
+@test2 = qw# dino barney fred #;
+
+print "before shift: @test2 \n";
+$m = shift @test2;
+print "after shift: @test2, \$m: $m \n";
+
+$n = shift @test2;
+print "after second shift: @test2, \$m: $n \n";
+
+#splice operation of arrays
+print "\nSplice operations on arrays \n";
+
+
+print "array before splice: @array\n";
+
+@remove = splice @array, 2, 4;
+print "removed: @remove\n";
+print "array after splice: @array\n";
+
+
+#for each structure
+print "Foreach Example\n";
+foreach $tmp (@array)
+{
+	print "$tmp \n";
+}
+
+# $_ is the default variable for Perl
+#for each structures need paranthesis around the array name
+
+foreach (@test2)
+{
+	print "$_ \n";
+}
+
+
+#Revers operation
+@revarray = reverse @array;
+print "array in reverse: @revarray\n";
+
+
+#the sort operator 
+@sortarray = sort @array;
+print "array sorted: @sortarray\n";
+
+
+#the each operator
+# dont use the each operator for the include package messes with code 
+
+#playing with scalars and arrays
+
+@something = qw/ this is some list/;
+$var = 15;
+
+print "This array: @something\n";
+print "This variable: $var\n";
+
+@somethingel = sort @something;
+
+$varel = $var + @somethingel;
+
+print "Var now; $varel\n";
+
+
+@something = reverse @somethingel;
+
+print "something: @something\n";
+
+$bakwards = reverse qw/ wabba dabb doo /;
+
+print "scalar of something: $backwards\n";
+#the scalar conersion does not seem to work????
+
+#forcing sacalr on a list
+
+print "This " . scalar @something . "\n";
+
+#readin stdin for array context
+
+print "Enter something: \nRemember that ctrl + D ends input!!\n::";
+@somearray = <STDIN>;
+
+
+print "\n \n you have entered @somearray\n";
+
+#chapter 4
+
+#subroutines
+
+sub marine 
+{
+	$n += 1;
+	print "Hello number: $n\n";
+}
+
+
+marine;
+
+&marine;
+
+sub poop
+{
+	print "entered addd1andd2 \n";
+	
+	$d1 + $d2;
+	
+}
+
+
+$d1 = 9;
+$d2 = 45;
+
+print  &poop . "\n" ;
+
+
+
+sub max 
+{
+	my($maxsofar) = shift @_;
+	
+	foreach (@_) 
+	{
+		if ( $maxsorfar < $_ )
+		{
+			$maxsofar = $_;
+		}
+		
+		
+	}
+	$maxsofar;
+}	
+
+
+print max(@sortarray). "\n";
+
+#CHAPTER 4
+
+#use strict to enforce good programming
+#recommended for long programs
+use 5.010;
+use strict;
+
+sub marine2
+{
+	state $n = 0;
+	$n += 1;
+	print "hello, sailor number $n\n";
+
+}
+
+
+marine2;
+marine2;
+
+marine2;
+
+marine2;
+
+#chapter 5
+
+
+
+
+

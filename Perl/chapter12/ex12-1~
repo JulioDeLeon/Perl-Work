@@ -1,0 +1,7 @@
+#!/bin/perl -w 
+use strict;
+
+my $file = shift @ARGV;
+die "usage: '$ARGV[0]' filname" if !(defined $file);
+
+

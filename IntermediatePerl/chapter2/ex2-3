@@ -1,0 +1,11 @@
+#!/bin/perl -w
+use strict;
+use warnings;
+
+#Modules
+use Business::ISBN;
+my $isbnVar = Business::ISBN->new(9781446393090);
+print $isbnVar->group_code . "\n";
+print $isbnVar->publisher_code . "\n";
+
+

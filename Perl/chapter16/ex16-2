@@ -1,0 +1,12 @@
+#!/bin/perl -w
+use strict;
+use warnings;
+
+system 'touch ls.err';
+system 'touch ls.out';
+open STDOUT, '>', 'ls.out' or die "Cannot open ls.out $!";
+open STDERR, '<', 'ls.err' or die "Cannot open ls.err $!";
+die "ERR: USAGE: $0 <path>\n" if !defined $ARGV[0];
+chdir $ARGV[0] or die "Cant change to that dir $!\n";
+exec 'ls', '-l' or die "Can't exec ls $!\n";
+

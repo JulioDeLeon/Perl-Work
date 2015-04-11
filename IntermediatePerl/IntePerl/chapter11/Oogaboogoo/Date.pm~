@@ -1,0 +1,52 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+package Oogaboogoo::Date;
+use constant {
+	JAN => 0,
+	FEB => 1,
+	MAR => 2,
+	APL => 3,
+	MAY => 4,
+	JUN => 5,
+	JUL => 6,
+	AUG => 7,
+	SEP => 8,
+	OCT => 9,
+	NOV => 10,
+	DEC => 11,
+	
+};
+
+
+my @day = qw(ark dip wap sen pop sep kir);
+
+sub day { 
+	my $num = shift;
+	die "$num not valid $!\n" 
+		unless $num >= 0 and $num <= 11;
+	return $day[$num];
+}
+
+my @month = qw(diz pod bod rod sip wax lin sen kun fiz nap dep);
+
+sub mon {
+	my $num = shift;
+	
+	die "$num not valid $!\n" 
+		unless $num >= 0 and $num <= 11;
+	return $month[$num];	
+}
+
+sub localtime {
+	my($sec, $min, $hour, $mday, $mon, $year, $wday) = localtime;
+	return "Today is ". day($wday) . " ". mon($mon) . "$mday $year\n";
+}
+
+#note that the end of this file is return 1, This is because all perl packages 
+#must return "true" for error checking;
+1;
+
+

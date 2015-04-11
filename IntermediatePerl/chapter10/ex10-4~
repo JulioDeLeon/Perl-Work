@@ -1,0 +1,56 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+
+use Data::Dumper;
+#this example use recursives subroutines 
+# and recursively defined data (data trees)
+
+sub data_for_path {
+	my $path = shift;
+	return undef if (-f $path or -l $path);	#check for links or files
+	
+	if (-d $path){
+		my %dir;
+		opendir PATH, $path or die "Cannot opendir $path: $!";
+		my @names = readdir PATH;
+		closedir PATH;
+		#notice how PATH does not have a $ (scalar symbol) PATH is a special reference
+		# special refence like PATH tend to be used with working files.
+		
+		for my $name (@names){
+			next if $name eq '.' or $name eq '..';
+			$dir{$name} = data_for_path("$path/$name");
+		}
+		return \%dir;		
+	}
+	warn "$path is neither a file nor a directory\n";
+	return undef;
+}
+my $path = "/home/kd9aon/Documents";
+
+print "Path entered: $path\n";
+my $someHashptr = data_for_path($path);
+#print Dumper(data_for_path(".."));
+
+
+sub print_data_for_path {
+	my $hshptr = shift;
+	my $acc = shift;
+	foreach (sort keys %$hshptr){
+		if(!defined $hshptr->{$_}){
+			print "\t"x$acc, "$_\n"; 
+		}else {
+			#means it is a hash ref
+			print "\t"x$acc,"$_\{\n";
+			print_data_for_path($hshptr->{$_}, $acc + 1);
+			print "\t"x$acc,"\}\n";
+		}
+	}
+}
+
+
+print_data_for_path $someHashptr, 0;
+

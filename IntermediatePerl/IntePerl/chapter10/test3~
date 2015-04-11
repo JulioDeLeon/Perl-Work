@@ -1,0 +1,60 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+use File::Basename;
+use File::Spec::Functions;
+
+#Unlike in "test2", we will be using iterative solutions, not recursion
+
+my $data = data_for_path("/home/jleon/Documents");
+
+
+sub data_for_path {
+	my $path = @_;
+	my $data = {};
+	my @queue = ([$path, $data]);
+	
+	while (my $next = shift @queue){
+		# $next = @queue[i] = *( [$path, $data] );
+		#					so you deref the array pointer
+		my($path, $ref) = @$next;
+		
+		my $basename = basename( $path );
+		
+		$ref->{$basename} = do {
+			if( -f $path or -l $path) {undef}
+			else {
+				my $hash = {};
+				opendir my $dh, $path;
+				my @new_paths = map {
+					catfile( $path, $_ )
+				} grep {! /^\.\.?\z/ } readdir $dh;
+				
+				unshift @queue, map { [$_, $hash]} @new_paths;
+				#if you want to use the Breadth solution use the following
+				#push @queue, map { [$_, $hash]} @new_paths;
+				# when using this solution, You can stop at any level of depth that you want
+				# you can do this with recursion but it will get ugly.
+				$hash;
+			}
+		};
+	}
+	
+	$data;
+}
+#though this is a iterative solution,
+#it does not nessecarily mean it runs faster than the recursive solution
+
+sub iterative_solution {
+	my $start = @_;
+	my $data = {};
+	my @queue = ([$start, $data]);
+	
+	while (my $next = shift @queue) {
+		
+	}
+	
+	return $data;
+}

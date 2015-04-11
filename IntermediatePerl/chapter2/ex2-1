@@ -1,0 +1,19 @@
+#!/bin/perl -w
+use warnings;
+use strict;
+
+#Modules
+use Cwd;
+
+my $path = getcwd;
+my $dh;
+#print "CWD: ". $path . "\n";
+opendir($dh, $path) or die "Cannot open Current Directory $!\n";
+
+my @files = readdir $dh;
+
+foreach (sort @files){
+	print " " x 4 . $path ."/$_" . "\n";
+}
+
+closedir $dh;

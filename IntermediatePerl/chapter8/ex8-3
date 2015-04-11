@@ -1,0 +1,19 @@
+#!/bin/perl
+use v5.18;
+use utf8;
+use strict;
+use warnings;
+
+use IO::Dir;
+use IO::File;
+
+foreach (@ARGV){
+	my $dh = IO::Dir->new($_)
+		or die "Invalid DIR!! $_ $!\n";
+	
+	print "--$_--\n";
+	while (defined (my $file = $dh->read)){
+		print "\t$file\n";
+	}
+}
+

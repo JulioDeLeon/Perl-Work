@@ -1,0 +1,30 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+use File::Basename;
+
+#This is script is ment to create a perl script pre-filled with common settings
+
+die "ERR: USUAGE: $0 <filename> $!\n" if @ARGV != 1;
+chdir '.';
+my $file = $ARGV[0];
+my $fh;
+
+print "Creating $file in cwd\n";
+unless (open $fh,'>',$file){
+	die "could not create/open file\n";
+}
+
+
+
+print $fh "#!/bin/perl\n";
+print $fh "use v5.18;\n";
+print $fh "use strict;\n";
+print $fh "use warnings;\n";
+
+chmod 0755, $fh; 
+
+close $fh;
+print "\nDone!!!\n";

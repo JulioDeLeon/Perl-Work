@@ -1,0 +1,16 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+#dumping closures
+
+use Data::Dump::Streamer;
+
+my @luxuries = qw(Diamonds Furs Caviar);
+my $hash = {
+	Gilligan 	 => sub { say 'Howdy Skipper!'	  },
+	Skipper		 => sub { say 'Gilligan'		  },
+	'Mr. Howell' => sub { say 'Money Money Money!'},
+	Ginger 		 => sub { say $luxuries[rand @luxuries]},
+};

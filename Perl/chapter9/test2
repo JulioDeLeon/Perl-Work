@@ -1,0 +1,15 @@
+#!/usr/bin/perl -w
+use 5.0.10;
+use strict;
+
+#note the pairing ` characters allow you to execute a shell command 
+chomp(my $date = `date`);
+
+$^I = "~";
+
+while (<>)
+{
+	#remember the ^ char anchors to the start of the line
+	s/$/(c) Julio de Leon/;
+	print;
+}

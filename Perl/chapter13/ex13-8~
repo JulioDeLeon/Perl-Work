@@ -1,0 +1,20 @@
+#!/bin/perl -w
+use strict;
+
+my $usrin = undef;
+my $DEBUG;
+foreach my $arg (@ARGV){
+	$DEBUG = ($arg =~ /-d/)? 1 : undef;
+}
+
+print "IN DEBUG:\n" if $DEBUG;
+
+opendir DOT, "." or die "Cannot open dot, $!\n";
+
+foreach (sort readdir DOT) {
+	if (-l $_){
+		print "$_ -> " . readlink $_ . "\n";
+	}
+}
+	
+

@@ -1,0 +1,7 @@
+#!/bin/perl -w 
+use strict;
+use warnings;
+
+
+chdir  "temp1";
+system 'ls -l';

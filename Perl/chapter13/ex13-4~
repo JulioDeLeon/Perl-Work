@@ -1,0 +1,7 @@
+#!/bin/perl -w
+use strict;
+
+my $toberm = (defined $ARGV[0])? $ARGV[0] : undef;
+die "ERR: USAGE: $0 <path to file> \n" if !defined $toberm;
+
+unlink $toberm;

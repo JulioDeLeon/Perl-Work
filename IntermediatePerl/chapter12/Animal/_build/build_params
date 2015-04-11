@@ -1,0 +1,125 @@
+do{ my $x = [
+       {
+         'ARGV' => []
+       },
+       {},
+       {
+         'prefix' => undef,
+         'get_options' => {},
+         'blib' => 'blib',
+         'build_class' => 'Module::Build',
+         'html_css' => '',
+         'dist_version' => '0.01',
+         'test_file_exts' => [
+                               '.t'
+                             ],
+         'program_name' => undef,
+         'pm_files' => undef,
+         'release_status' => 'stable',
+         'auto_configure_requires' => 1,
+         'build_script' => 'Build',
+         'autosplit' => undef,
+         'metafile2' => 'META.json',
+         'sign' => undef,
+         'license' => 'Artistic_2_0',
+         'perl' => '/usr/bin/perl',
+         'config' => undef,
+         'dist_version_from' => 'lib/Animal.pm',
+         'mymetafile2' => 'MYMETA.json',
+         'pod_files' => undef,
+         'create_packlist' => 1,
+         'cpan_client' => 'cpan',
+         'create_license' => undef,
+         'config_dir' => '_build',
+         'install_base_relpaths' => {},
+         'dist_name' => 'Animal',
+         'mb_version' => '0.4007',
+         'base_dir' => '/home/jleon/Documents/IntePerl/chapter12/Animal',
+         'prefix_relpaths' => {},
+         'orig_dir' => '/home/jleon/Documents/IntePerl/chapter12/Animal',
+         'pollute' => undef,
+         'extra_manify_args' => undef,
+         'mymetafile' => 'MYMETA.yml',
+         'dist_suffix' => undef,
+         'xs_files' => undef,
+         'debug' => undef,
+         'bundle_inc' => [],
+         'dist_abstract' => undef,
+         'conflicts' => {},
+         'install_sets' => {},
+         'recursive_test_files' => undef,
+         'build_requires' => {
+                               'Test::More' => 0
+                             },
+         '_added_to_INC' => [],
+         'dynamic_config' => 1,
+         'install_base' => '/home/jleon/perl5',
+         'create_readme' => undef,
+         'PL_files' => undef,
+         'magic_number' => undef,
+         'pureperl_only' => 0,
+         'recurse_into' => [],
+         'bindoc_dirs' => [
+                            'blib/script'
+                          ],
+         'tap_harness_args' => {},
+         'bundle_inc_preload' => [],
+         'libdoc_dirs' => [
+                            'blib/lib',
+                            'blib/arch'
+                          ],
+         'test_files' => undef,
+         'destdir' => undef,
+         'meta_merge' => {},
+         'build_bat' => 0,
+         'c_source' => undef,
+         'metafile' => 'META.yml',
+         'create_makefile_pl' => 'traditional',
+         'recommends' => {},
+         'verbose' => undef,
+         'allow_pureperl' => 0,
+         'extra_compiler_flags' => [],
+         'needs_compiler' => '',
+         'meta_add' => {},
+         'include_dirs' => [],
+         'has_config_data' => undef,
+         'scripts' => undef,
+         'original_prefix' => {},
+         'requires' => {},
+         'build_elements' => [
+                               'PL',
+                               'support',
+                               'pm',
+                               'xs',
+                               'share_dir',
+                               'pod',
+                               'script'
+                             ],
+         'share_dir' => undef,
+         'debugger' => undef,
+         'dist_author' => [
+                            'Julio de Leon <jangelod@gmail.com>'
+                          ],
+         'configure_requires' => {
+                                   'Module::Build' => 0
+                                 },
+         'quiet' => undef,
+         'install_path' => {},
+         'allow_mb_mismatch' => 0,
+         'extra_linker_flags' => [],
+         'use_tap_harness' => 0,
+         'test_requires' => {},
+         'installdirs' => 'site',
+         'script_files' => undef,
+         'use_rcfile' => 1,
+         'module_name' => 'Animal',
+         'prereq_action_types' => [
+                                    'requires',
+                                    'build_requires',
+                                    'test_requires',
+                                    'conflicts',
+                                    'recommends'
+                                  ]
+       }
+     ];
+$x; }

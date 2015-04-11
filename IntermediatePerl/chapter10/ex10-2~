@@ -1,0 +1,27 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+use Benchmark qw(:all);
+
+chdir;
+
+my $gd = sub get_sorted1 {
+	sort { -s $a <=> -s $b } glob '*';
+};
+
+my $sd = sub get_sorted2 {
+	opendir HOME, "."  or die "Cannont Open Home Dir";
+	map $_->[0],					#Extraction
+	sort { $a->[1] cmp $b->[1]} 	#Comparison
+	map [$_, (-s $_)],				#Construction
+	readdir HOME; 
+};
+
+timethese(-2, 
+	{	
+		GLOB => $gd, 	
+		ST => $sd,
+	});
+	

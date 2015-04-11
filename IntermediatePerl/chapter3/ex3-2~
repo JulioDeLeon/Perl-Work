@@ -1,0 +1,26 @@
+#!/bin/perl 
+use strict;
+use warnings;
+
+my $temp = "This is a long string for the user to match";
+
+my $dh;
+opendir $dh, "/etc";
+my @files = readdir $dh;
+
+
+print "Enter something: ";
+while(<STDIN>){
+	chomp;
+	exit if $_ =~ /\A\Z/;
+	
+	my $exp = $_;
+
+	print "ERR\n" if !eval{ 
+		 
+		 map { print "matched /etc/$_ \n" } grep { $_ =~ /$exp/i } @files;
+		 
+	};
+	
+	print "Enter Something: ";
+}

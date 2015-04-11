@@ -1,0 +1,26 @@
+#!/bin/perl -w 
+use strict;
+use warnings;
+
+#Modules
+use File::Basename;
+use File::Spec;
+use Math::BigInt;
+
+my $base = File::Basename::basename("/home/kd9aon/Documents");
+#print $base . "\n";
+
+my $val = Math::BigInt->new(2);
+$val->bpow(1000);
+#print $val->bstr . "\n";
+
+#Find the modules I have Install 
+ use ExtUtils::Installed;
+ my ($inst) = ExtUtils::Installed->new( skip_cwd => 1 );
+ my (@modules) = $inst->modules();
+
+
+print "Modules (" . @modules . ") \n";
+foreach(@modules){
+	print $_ . "\n";
+}

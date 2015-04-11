@@ -1,0 +1,125 @@
+do{ my $x = [
+       {
+         'ARGV' => []
+       },
+       {},
+       {
+         'build_class' => 'Module::Build',
+         'dist_author' => [
+                            'Julio de Leon <jangelod@gmail.com>'
+                          ],
+         'script_files' => undef,
+         'cpan_client' => 'cpan',
+         'allow_pureperl' => 0,
+         'meta_add' => {},
+         'get_options' => {},
+         'create_readme' => undef,
+         'c_source' => undef,
+         'prereq_action_types' => [
+                                    'requires',
+                                    'build_requires',
+                                    'test_requires',
+                                    'conflicts',
+                                    'recommends'
+                                  ],
+         'needs_compiler' => '',
+         'recurse_into' => [],
+         'module_name' => 'Test2',
+         'mb_version' => '0.4007',
+         'create_packlist' => 1,
+         'libdoc_dirs' => [
+                            'blib/lib',
+                            'blib/arch'
+                          ],
+         'pm_files' => undef,
+         'dynamic_config' => 1,
+         'destdir' => undef,
+         'tap_harness_args' => {},
+         'use_rcfile' => 1,
+         'requires' => {},
+         'prefix_relpaths' => {},
+         'bundle_inc' => [],
+         'pollute' => undef,
+         'license' => 'Artistic_2_0',
+         'verbose' => undef,
+         'pureperl_only' => 0,
+         'recommends' => {},
+         'allow_mb_mismatch' => 0,
+         'dist_name' => 'Test2',
+         'html_css' => '',
+         'program_name' => undef,
+         'magic_number' => undef,
+         'base_dir' => '/home/jleon/Documents/IntePerl/chapter12/Test2',
+         'meta_merge' => {},
+         'blib' => 'blib',
+         'extra_compiler_flags' => [],
+         'config' => undef,
+         'autosplit' => undef,
+         'share_dir' => undef,
+         'release_status' => 'stable',
+         '_added_to_INC' => [],
+         'dist_version_from' => 'lib/Test2.pm',
+         'debug' => undef,
+         'debugger' => undef,
+         'install_path' => {},
+         'use_tap_harness' => 0,
+         'test_requires' => {},
+         'metafile' => 'META.yml',
+         'sign' => undef,
+         'scripts' => undef,
+         'recursive_test_files' => undef,
+         'has_config_data' => undef,
+         'build_bat' => 0,
+         'installdirs' => 'site',
+         'prefix' => undef,
+         'build_requires' => {
+                               'Test::More' => 0
+                             },
+         'metafile2' => 'META.json',
+         'extra_manify_args' => undef,
+         'extra_linker_flags' => [],
+         'install_sets' => {},
+         'test_files' => undef,
+         'install_base' => '/home/jleon/perl5',
+         'pod_files' => undef,
+         'perl' => '/usr/bin/perl',
+         'dist_abstract' => undef,
+         'quiet' => undef,
+         'original_prefix' => {},
+         'mymetafile2' => 'MYMETA.json',
+         'create_license' => undef,
+         'dist_suffix' => undef,
+         'bundle_inc_preload' => [],
+         'configure_requires' => {
+                                   'Module::Build' => 0
+                                 },
+         'build_script' => 'Build',
+         'create_makefile_pl' => 'traditional',
+         'install_base_relpaths' => {},
+         'dist_version' => '0.01',
+         'bindoc_dirs' => [
+                            'blib/script'
+                          ],
+         'mymetafile' => 'MYMETA.yml',
+         'auto_configure_requires' => 1,
+         'orig_dir' => '/home/jleon/Documents/IntePerl/chapter12/Test2',
+         'conflicts' => {},
+         'build_elements' => [
+                               'PL',
+                               'support',
+                               'pm',
+                               'xs',
+                               'share_dir',
+                               'pod',
+                               'script'
+                             ],
+         'test_file_exts' => [
+                               '.t'
+                             ],
+         'PL_files' => undef,
+         'include_dirs' => [],
+         'xs_files' => undef,
+         'config_dir' => '_build'
+       }
+     ];
+$x; }

@@ -1,0 +1,4 @@
+#!/bin/perl
+use strict;
+use warnings;
+map {print  "    $_\n" } grep { 1000 > -s } @ARGV;

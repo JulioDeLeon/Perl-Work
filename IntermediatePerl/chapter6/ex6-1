@@ -1,0 +1,48 @@
+#!/bin/perl
+use strict;
+use warnings;
+use Storable;
+
+
+my %someHash;
+my $all = "**all**";
+my $data_file = "total_bytes.data";
+my $data;
+
+if( -e $data_file){
+	$data = retrieve $data_file;
+	%someHash = %$data;	
+}
+
+while(<>){
+	next if /^#/;
+	my ($source, $dest, $num) = split;
+
+	$someHash{$source}{$dest} += $num;
+	$someHash{$source}{$all} += $num;
+}
+
+store \%someHash, $data_file;
+
+
+my @sources = sort{ $someHash{$b}{$all} <=> $someHash{$a}{$all} } keys %someHash;
+
+
+
+
+for my $source (@sources){
+	my @destination = 
+		sort {$someHash{$source}{$b} <=> $someHash{$source}{$a} }
+		keys %{ $someHash{$source} };
+		
+	print "$source: $someHash{$source}{$all} total bytes sent \n";
+	
+	for my $destination (@destination){
+		next if $destination eq $all; 
+		print " $source => $destination: ", " $someHash{$source}{$destination} bytes";
+	}
+	
+	print "\n";
+}
+	
+

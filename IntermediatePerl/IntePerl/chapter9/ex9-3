@@ -1,0 +1,26 @@
+#!/bin/perl -w
+use v5.18;
+use strict;
+
+use Regexp::Assemble;
+
+
+die "Err: Usuage: $0 <filename> $!\n" if @ARGV != 1;
+
+
+#load up an array of regex patterns
+my $re = Regexp::Assemble->new;
+while(<>){
+	chomp;
+	#print $.; #this is the line number
+	$re->add($_);
+}
+
+
+while(<STDIN>){
+	chomp;
+	my $word = $_;
+	
+	
+	print "You have matched $re->matched in $word" if $re->match($word);
+}

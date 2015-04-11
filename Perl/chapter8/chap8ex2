@@ -1,0 +1,19 @@
+#!/usr/bin/perl -w
+use 5.010;
+
+=begin intro 
+	For this exercise, show strings that have words that end with the letter 'a'
+=cut intro
+
+while(<>)
+{
+	chomp;
+	#match with word boundary '\b'
+	if( /\b\w+[a+]\b/ ) #adding i at the end of the reg makes it case insensitive
+	{
+		print "Matched : |$`<$&>$'|\n";
+	}else
+	{
+		print "No Match: |$_|\n";	
+	}
+}

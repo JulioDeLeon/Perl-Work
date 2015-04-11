@@ -1,0 +1,10 @@
+#!/usr/bin/perl -w
+use 5.010;
+use strict;
+my $filename = shift @ARGV;
+$^I = ".bak";
+while( <> )
+{
+	s/^/$filename: /g;
+	print;
+}

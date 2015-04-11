@@ -1,0 +1,11 @@
+#!/bin/perl -w 
+use strict;
+my $oldest = $ARGV[0];
+die "UNDEFINED ARGS!\n" if ! defined $oldest;
+
+foreach (@ARGV){
+	$oldest = ( -M $_ > -M $oldest)? $_ : $oldest; 	
+}
+my $days = -M $oldest;
+print "The oldest file is $oldest at $days days\n";
+

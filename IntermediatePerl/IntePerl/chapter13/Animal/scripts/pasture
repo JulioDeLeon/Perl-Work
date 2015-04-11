@@ -1,0 +1,11 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+use Mouse;
+use Animal;
+use Cow;
+
+Animal::speak('Cow');
+Mouse->speak;

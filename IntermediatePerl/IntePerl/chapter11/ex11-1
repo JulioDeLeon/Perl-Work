@@ -1,0 +1,15 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+use Oogaboogoo::Date qw(:all);
+
+my @arr = (0..6);
+
+foreach my $num (@arr){
+	print Oogaboogoo::Date::day($num) . "\n";
+	#print ;
+}
+
+print Oogaboogoo::Date::localtime();

@@ -1,0 +1,43 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+
+#this is how you create a class
+package MagicalCodeRef 1.01 {
+	use overload '""' => sub {
+		require B;
+		
+		my $ref = shift;
+		my $gv = B::svref_2object($ref)->GV;
+		
+		require B::Deparse;
+		my $desparse = B::Depasre->new;
+		my $code = $desparse->coderef2text($ref);
+	
+		require PadWalker;
+		my $hash = PadWalker::closed_over($ref);
+		
+		require DataDumper;
+		 local $Data::Dumper::Terse = 1;
+		my $string = sprintf "---code ref---\n%s:%d\n%s---\n%s---",
+			$gv->FILE, $gv->LINE, 
+			$code,
+			Data::Dumper::Dumper( $hash );
+	};
+	
+	sub enchant {bless $_[1], $_[0]}
+}
+
+
+my $sub = MagicalCodeRef->enchant( sub {say 'Gilligan!!!' } );
+
+my @array = ( \ 'xyz', [qw(a b c)], $sub );
+
+foreach( @array ){
+	when( ref eq ref \ '') { say "Scalar $$_" }
+	when( ref eq ref [] ) { say "Array @$_"}
+	when( ref eq ref 'MagicalCodeRef' ) { say "Sub $sub"}
+	say "Sub $sub";
+}

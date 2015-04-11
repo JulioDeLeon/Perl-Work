@@ -1,0 +1,28 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+use File::Basename;
+
+#This is script is ment to create a perl script pre-filled with common settings
+
+die "ERR: USUAGE: $0 <filename> $!\n" if @ARGV != 1;
+my $file = $ARGV[0];
+my $fh;
+
+print "Creating $file.pm in cwd\n";
+unless (open $fh,'>',($file . ".pm") ){
+	die "could not create/open file\n";
+}
+
+print $fh "#!perl\n";
+print $fh "package $file;\n";
+print $fh "use v5.18;\n";
+print $fh "use strict;\n";
+print $fh "use warnings;\n";
+print $fh "use Moose;\n";
+print $fh "use namespace::autoclean\n";
+print $fh "\n__PACKAGE__->meta->make_immutable;\n#End of Module\n1;"; 
+close $fh;
+print "\nDone!!!\n";

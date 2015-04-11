@@ -1,0 +1,80 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+
+#look at this wrongly sorted list
+my @wrongly_sorted_list = sort 1, 2, 4, 8, 16, 32;
+print "@wrongly_sorted_list\n";
+
+
+#now sort the list using a written sort algorithm
+my @rightly_sorted_list = sort { 
+	if ($a < $b)	{ -1 }
+	elsif ($a > $b)	{ +1 }
+	else 			{  0 }	
+} 1,2,4,8,16,32;
+	
+print "@rightly_sorted_list\n";
+
+#example of smart sort operator
+my @smartly_sorted_list = sort { $a <=> $b } 1,2,4,8,16,32;
+
+print "@smartly_sorted_list\n";
+
+#sorting with indices 
+my @input = qw(Gilligan Skipper Professor Ginger Mary-Ann);
+my @sorted_pos = sort {$input[$a] cmp $input[$b]} 0 .. $#input; 
+print "@sorted_pos\n";
+
+my @ranks; 
+@ranks[@sorted_pos] = (0..$#sorted_pos);
+print "@ranks\n";
+
+foreach (0..$#ranks){
+	print "$input[$_] sorts into position $ranks[$_]\n";
+}
+
+
+#the naive approach of sorting something
+my @castaways = 
+	qw(Gilligan Skipper Professor Ginger Mary-Ann Thurtson Lovey);
+my @wasters = sort {
+	ask_monkey_about($b) <=> ask_monkey_about($a)
+} @castaways;
+#this method of sorting is bad because you will constantly ask about a specific  person
+# repeatively when traversing the list. 
+
+
+#to help solve this, we need to minimize the number of times we ask the monkey about a specific person
+my @names_and_pineapples = map {
+	[$_, ask_monkey_about($_)]
+} @castaways;
+#we have minimize to talking with the monkey to 7 times;
+
+my @sorted_names_and_pinapples = sort {
+	$b->[1] <=> $a->[1];
+}	@names_and_pineapples;
+
+my @names = map $_->[0], @sorted_names_and_pineapples;
+#However even this is unessecary
+# theres a better way to do so
+
+@names = 
+	map $_->[0],
+	sort {$b->[1] <=> $a->[1]}
+	map [$_, ask_monkey_about($_)],
+	@castaways;
+#this is an example of the Schwartzian Transformation;
+#this method of sorting can still handle multiple sort criterions
+my @output_data = 
+	map $_->[0],
+	sort {
+		$a->[1] cmp $b->[1] or
+		$a->[2] <=> $b->[2] or
+		$a->[3] cmp $b->[3] 
+	}
+	map [ $_, lc, get_id($_, get_name($_)],
+	@input_data;
+

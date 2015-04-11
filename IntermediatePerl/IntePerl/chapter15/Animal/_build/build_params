@@ -1,0 +1,125 @@
+do{ my $x = [
+       {
+         'ARGV' => []
+       },
+       {},
+       {
+         'configure_requires' => {
+                                   'Module::Build' => 0
+                                 },
+         'requires' => {},
+         'destdir' => undef,
+         'prefix_relpaths' => {},
+         'original_prefix' => {},
+         'magic_number' => undef,
+         'build_elements' => [
+                               'PL',
+                               'support',
+                               'pm',
+                               'xs',
+                               'share_dir',
+                               'pod',
+                               'script'
+                             ],
+         'dist_name' => 'Animal',
+         'create_packlist' => 1,
+         'blib' => 'blib',
+         'auto_configure_requires' => 1,
+         'use_tap_harness' => 0,
+         'install_path' => {},
+         'autosplit' => undef,
+         'dist_version' => '0.01',
+         'share_dir' => undef,
+         'debug' => undef,
+         'c_source' => undef,
+         'prereq_action_types' => [
+                                    'requires',
+                                    'build_requires',
+                                    'test_requires',
+                                    'conflicts',
+                                    'recommends'
+                                  ],
+         'bindoc_dirs' => [
+                            'blib/script'
+                          ],
+         'dist_author' => [
+                            'Julio de Leon <jangelod@gmail.com>'
+                          ],
+         'orig_dir' => '/home/jleon/Documents/IntePerl/chapter15/Animal',
+         'dist_suffix' => undef,
+         'prefix' => undef,
+         'metafile2' => 'META.json',
+         'pureperl_only' => 0,
+         'install_base' => '/home/jleon/perl5',
+         'perl' => '/usr/bin/perl',
+         'license' => 'Artistic_2_0',
+         'create_readme' => undef,
+         'xs_files' => undef,
+         'pm_files' => undef,
+         'extra_linker_flags' => [],
+         'scripts' => undef,
+         'tap_harness_args' => {},
+         'use_rcfile' => 1,
+         '_added_to_INC' => [],
+         'conflicts' => {},
+         'cpan_client' => 'cpan',
+         'test_files' => undef,
+         'create_makefile_pl' => 'traditional',
+         'quiet' => undef,
+         'extra_compiler_flags' => [],
+         'build_script' => 'Build',
+         'build_requires' => {
+                               'Test::More' => 0
+                             },
+         'bundle_inc' => [],
+         'config' => undef,
+         'mymetafile' => 'MYMETA.yml',
+         'needs_compiler' => '',
+         'installdirs' => 'site',
+         'install_base_relpaths' => {},
+         'build_class' => 'Module::Build',
+         'allow_pureperl' => 0,
+         'meta_add' => {},
+         'meta_merge' => {},
+         'script_files' => undef,
+         'module_name' => 'Animal',
+         'sign' => undef,
+         'recursive_test_files' => undef,
+         'debugger' => undef,
+         'mymetafile2' => 'MYMETA.json',
+         'mb_version' => '0.4007',
+         'dist_version_from' => 'lib/Animal.pm',
+         'test_file_exts' => [
+                               '.t'
+                             ],
+         'get_options' => {},
+         'pod_files' => undef,
+         'create_license' => undef,
+         'metafile' => 'META.yml',
+         'libdoc_dirs' => [
+                            'blib/lib',
+                            'blib/arch'
+                          ],
+         'dynamic_config' => 1,
+         'include_dirs' => [],
+         'bundle_inc_preload' => [],
+         'install_sets' => {},
+         'allow_mb_mismatch' => 0,
+         'PL_files' => undef,
+         'recommends' => {},
+         'has_config_data' => undef,
+         'html_css' => '',
+         'extra_manify_args' => undef,
+         'test_requires' => {},
+         'dist_abstract' => undef,
+         'build_bat' => 0,
+         'release_status' => 'stable',
+         'program_name' => undef,
+         'pollute' => undef,
+         'base_dir' => '/home/jleon/Documents/IntePerl/chapter15/Animal',
+         'recurse_into' => [],
+         'config_dir' => '_build',
+         'verbose' => undef
+       }
+     ];
+$x; }

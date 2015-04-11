@@ -1,0 +1,75 @@
+#!/bin/perl
+use strict;
+use warnings;
+
+sub skipper_greets {
+	my $person = shift;
+	print "Skipper: hey there, $person!\n";
+}
+
+sub gilligan_greets {
+	my $person = shift;
+	if( $person eq "Skipper"){
+		print "Gilligan: Sir, yes Sir, $person!\n";
+	}else {
+		print "Gilligan: Hey, $person!\n"
+	}
+}
+sub professor_greets {
+	my $person = shift;
+	print "Professor: by my calculations, you are $person!\n";
+}
+
+
+my @persons = qw/ Skipper Professor Gilligan Bob/;
+
+my @greetREFs;
+
+$greetREFs[0] = \&skipper_greets;
+$greetREFs[1] = \&gilligan_greets;
+$greetREFs[2] = \&professor_greets;
+
+
+foreach my $person (@persons){
+	foreach my $greeting (@greetREFs){
+		&$greeting($person);
+	}
+}
+
+
+print "now for the Hash Table implementation\n\n";
+
+my %hashREFs = 	(
+	Gilligan => \&gilligan_greets,
+	Skipper => \&skipper_greets,
+	Professor => \&professor_greets,
+	#example of a anonymous function being passed in a hash table declaration
+	Bob => sub {
+		my $person = shift;
+		print "Bob: yo, $person!\n";
+	},
+);
+
+my @room;
+
+foreach my $greeter ( sort keys %hashREFs){
+	print "\n";
+	print "$greeter has walked into the room!\n";
+	foreach my $person (@room){
+		$hashREFs{$greeter}->($person);
+		$hashREFs{$person}->($greeter);
+	}	
+	push(@room,$greeter);
+}
+
+
+#example of making a ref to an anonymous function
+my $bobGreetRef = sub {
+	my $person = shift;
+	print "Bob: yo, $person!\n";
+};
+
+
+
+
+

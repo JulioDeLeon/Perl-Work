@@ -1,0 +1,15 @@
+#!/bin/perl -w 
+use strict;
+
+die "ERR: USAGE: $0 <string> <substring>\n" if (!defined $ARGV[0] || !defined $ARGV[1]);
+
+print "String $ARGV[0] \n" . "Substring $ARGV[1] \n";
+
+my $index = 0;
+
+while ( $index != -1) {
+	$index = index( $ARGV[0], $ARGV[1], $index);
+	if ($index != -1) {
+			
+	} 
+}

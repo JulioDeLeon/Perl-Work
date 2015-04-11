@@ -1,0 +1,45 @@
+#!/bin/perl
+use strict;
+use warnings;
+use JSON;
+
+my $someHash;
+my $all = "**all**";
+my $data_file = "total_bytes.json";
+my $json_text;
+
+#1. create the JSON file
+if (-e $data_file){
+	local $/;
+	open my $fh, '<:raw', $data_file;
+	$json_text = <$fh>;
+	$someHash = decode_json($json_text);
+}	
+
+
+#Fill the hashTable
+while(<>){
+	next if /^#/;
+	my ($source, $dest, $num) = split;
+
+	#like in 'C', you use the arrow to access the hash table from reference
+	$someHash->{$source}{$dest} += $num;
+	$someHash->{$source}{$all} += $num;
+}
+
+
+#create an UTF8 format json file from contents of the someHash 
+{
+	open my $fh, '>:utf8', $data_file;
+	print $fh to_json( $someHash, { pretty => 1} );
+}
+
+foreach my $source (sort keys %$someHash){
+	print "$source\n";
+	my $dest_hash = $someHash->{$source};
+	foreach my $dest (sort keys %$dest_hash){
+		print " $dest $dest_hash->{$dest}\n"
+	}
+}
+	
+

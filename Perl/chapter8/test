@@ -1,0 +1,75 @@
+#!/usr/bin/perl -w
+use 5.010;
+
+$_ = "Hello There, Neighbor";
+
+
+
+if(/\s([a-zA-Z]+),/)
+{
+	print "the word was $1\n";
+}
+
+
+if(/(\S+) (\S+) (\S+)/)
+{
+	print "the words were $1 $2 $3\n";
+}
+
+my $dino = "I fear that I'll be extinct in 1000 years";
+
+
+# the '=~' binds the regular expression to a variable instead of comparing to $_ all the time
+if($dino =~ /([0-9]*) years/)
+{
+	print "That said '$1' years\n";
+}
+
+#playing with captures
+
+
+my $names = "fred and barney";
+
+#name captures are the '<...>' 
+#the capture ignore is the '?:'
+if ( $names =~ /(?<name1>\w+) (?:and|or) (?<name2>\w+)/)
+{
+	#the $+{} calls upon a named capture
+	say "I saw $+{name1} and $+{name2}";
+}
+
+#you can back reference a label
+ $names = "Fred Flintstone and Wilma Flintstone";
+
+#first define the label
+# then to back ref it, use \k<LABEL>
+if ($names =~  /(?<lastname>\w+) and \w+ \k<lastname>/)
+{	
+	say "I saw $+{lastname}";
+}
+
+#auto match variables
+#examples of the auto match Variables
+#	$& -> stores parts of the string that actually matched
+#	$` -> shows strings that can before the match
+#	$' -> shows string that came after the match	
+#NOTE: if you use these functions, your program will run slower
+#	this is due to the constant block entry and exit
+
+
+if ("Hello there, Neighbor" =~ /\s(\w+),/)
+{
+	print "That was ($`)($&)($').\n";
+}	
+
+#another set of auto match variables similar to the ones above
+#	you can call upon ${^PREMATCH} , ${^MATCH}, and ${^POSTMATCH} 
+# however, to use these vaiables, you must put a /p at the end of your regular expression
+
+if ("Hello there, Neighbor" =~ /\s(\w+),/p) #note the p at the end
+{
+        print "That was (${^PREMATCH})(${^MATCH})(${^POSTMATCH}).\n";
+}
+
+
+

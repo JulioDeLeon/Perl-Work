@@ -1,0 +1,14 @@
+#!/bin/perl -w
+use strict;
+use warnings;
+
+
+
+
+
+if(`date` =~ /^(?<day>\w+)/){
+    my $day =  "$+{day}";
+    #print $day;
+    print "Time for play\n" if $day =~ /(SUN|SAT)/i;
+    print "Time for work\n" if !($day =~ /(SUN|SAT)/i);
+}

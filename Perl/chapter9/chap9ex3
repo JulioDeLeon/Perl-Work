@@ -1,0 +1,37 @@
+#!/usr/bin/perl -w
+use 5.010;
+#use strict;
+my $in = shift @ARGV;
+#$^I = ".bak";
+
+if (! defined $in)
+{
+	die "Usage: $0 filename";
+}
+
+my $out = $in;
+
+#this segement of code makes a filename with .out at the end
+$out =~ s/(\.\w+)?$/.out/;
+
+#open a file for read
+if (! open $in_fh, '<', $in)
+{
+	die "Cant open '$in': $!";
+}
+
+#open a file for write
+if (! open $out_fh, '>', $out)
+{
+	die "Cant write '$out': $!";
+}
+
+while (<$in_fh>)
+{
+	#insert regex here
+	s/fred/placeholder/gi;
+	s/wilma/fred/gi;
+	s/placeholder/wilma/gi;	
+	print $out_fh $_;
+}
+

@@ -1,0 +1,62 @@
+#!/bin/perl 
+use warnings;
+use strict;
+
+
+#starting example of the subroutine
+sub digit_sum_is_odd {
+	my $input = shift;
+	my @digits = split //, $input; #this line splits the number as a string by every char
+	my $sum;
+	
+	$sum += $_ for @digits;
+	return $sum % 2;
+}
+
+#the same subroutine as an anyonmous function in a grep filter
+my @list;
+my @results = grep { #NOTE: the difference with this function is $input is defined by the default variable rather than shift @_
+	my $input = $_;
+	my @digits = split //, $input; #this line splits the number as a string by every char
+	my $sum;
+	
+	$sum += $_ for @digits;
+	return $sum % 2;
+} @list;
+
+#if the excess code was taken from the previous grep filter it would look like this
+@results = grep {
+	my @digits = split //; #since the input is grabbed from $_, dont need to define a variable for it
+	my $sum;
+	$sum += $_ for @digits;
+	return $sum % 2;
+} @list;
+
+#Basically use grep with a boolean returning function. The function will then be used to test each element in a given array
+
+#an example of map
+my @something = (1,3,4,5,7,8,33,77,324,657);
+my @dupe = map $_ + 3, @something;
+print "@dupe" . "\n";
+print "@something\n";
+my @sndupe = map { $_, $_ * -1, "insert $_",} @something;
+print "@sndupe\n";
+my %hsh = map { $_ , "inserted $_ in here"} @something;
+print "$_ : $hsh{$_} \n" foreach (sort keys %hsh);
+
+#an example with eval 
+#this example of eval shows the it can compile the contents of a string
+foreach my $op ( qw(+ - * /) ){
+	my $res = eval" 2 $op 2";
+	print " 2 $op 2 = $res \n";
+}
+
+#the 'do' structure (It is different from 'do' in other languages)
+#note the semi colon in the end
+my $var = do{
+	#some condition
+	if(1) {"Its a true"}
+	elsif(0) {"Its a false"}
+};
+print $var;
+

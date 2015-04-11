@@ -1,0 +1,17 @@
+#!/usr/bin/perl -w
+use 5.010;
+
+
+	#Modify exercise 2 for the captured is in $1
+
+while(<>)
+{
+	chomp;
+	if( /(\b(\w+[a]+)\b/ ) #adding i at the end of the reg makes it case insensitive
+	{
+		print "Matched : |$1|\n";
+	}else
+	{
+		print "No Match: |$_|\n";	
+	}
+}

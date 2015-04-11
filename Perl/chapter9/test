@@ -1,0 +1,17 @@
+#!/usr/bin/perl -w
+use 5.0.10;
+use strict;
+
+#note the pairing ` characters allow you to execute a shell command 
+chomp(my $date = `date`);
+
+$^I = ".bak";
+
+while (<>)
+{
+	#remember the ^ char anchors to the start of the line
+	s/^Author:.*/Author: Julio de Leon/;
+	s/^Phone:.*\n//;
+	s/^Date:.*/Date: $date/;
+	print;
+}

@@ -1,0 +1,62 @@
+#!/bin/perl -w
+use strict;
+use warnings;
+
+
+#ARRAY REFERENCE MINIPULATION
+my @someArray = qw( this that those it pat );
+my $arrRef = \@someArray;
+
+print "someArray: @someArray \n";
+print "arrRef: $arrRef \n";
+
+print "Printing the Contents of the array from a reference to it\n";
+&printArrayFromRefernce($arrRef);
+
+
+
+#HASH REFERENCE MINIPULATION
+my %someHash = (
+	this => 4,
+	that => 5,
+	is => 2,
+	boop => 7,);
+my $hashRef = \%someHash;
+
+print "$_ => $someHash{$_}\n" foreach sort keys %someHash;
+print "hashRef: $hashRef\n";
+
+
+print "Printing hash from ref\n";
+&printHashFromRefernce($hashRef);
+
+#SCALAR REFERENCE MINIPULATION
+
+my $someScalar = "This is some scalar variable";
+my $scalRef = \$someScalar;
+
+print "someScalar: $someScalar\n";
+print "scalRef: $scalRef\n";
+
+print "printing Scaler from reference \n";
+&printScalarFromRef($scalRef);
+
+
+#Subroutine Functions
+sub printArrayFromRefernce { 
+	my $copy_array_pointer = shift;
+	
+	print "$_ \n" foreach @$copy_array_pointer;
+}
+
+
+sub printHashFromRefernce {
+	my $ref = shift;
+	print "$_ => $$ref{$_}\n" foreach sort keys %$ref;	
+}
+
+sub printScalarFromRef {
+	print $$_ . "\n";
+}
+
+#EOF

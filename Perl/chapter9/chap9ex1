@@ -1,0 +1,23 @@
+#!/usr/bin/perl -w
+use 5.010;
+use strict;
+
+#Exercise 1: match a pattern that occurs 3 times in a row
+#	if the pattern is fred, correct results should have 'fredfredfred'
+#	if the pattern is fred|barnet, the correct results could be 'fredfredfred', 'fredbarneyfred', 'fredfredbarney'
+
+#delacre the pattern we want to match 
+
+my $what = 'fred|barney';
+while(<>)
+{
+	chomp;
+	#print $_; prints each line
+	if(/($what){3}/i )
+	{
+		print "Match: $_ \n";
+	}else
+	{
+		print "Not Match: $_ \n";
+	}
+}

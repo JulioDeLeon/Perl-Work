@@ -1,0 +1,26 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+use Animal;
+use Mouse;
+use Sheep;
+use Horse;
+use Cow;
+
+my @names;
+
+print "Enter Animal names or an empty line to continue: ";
+while(<STDIN>){
+	chomp;
+	last if $_ =~ /\A\Z/;
+	
+	my @tokens = split / /;
+	
+	push( @names, $_) foreach @tokens;
+	
+	print "Enter Animal names or an empty line to continue: ";
+}
+
+Animal::speak("$_") foreach @names;

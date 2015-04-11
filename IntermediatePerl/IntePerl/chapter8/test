@@ -1,0 +1,34 @@
+#!/bin/perl 
+use v5.18;
+use warnings;
+use strict;
+
+use IO::Dir;
+
+my $filename = "someFile";
+
+open my $fh, '>', $filename or die '...';
+$fh->print("coconut headphones");
+$fh->close;
+
+
+opendir my $dh, '.' or die "Could not open directory: $!";
+my @file_refs;
+foreach my $file (readdir $dh) {
+	push @file_refs, \$file;
+}
+
+foreach (sort @file_refs){
+	print "Skipper, I found $$_!\n";
+}
+
+
+#now for the directory handle references 
+my $dir_fh = IO::Dir->new('.')
+	or die "...";
+
+while ( defined (my $file = $dir_fh->read)){
+	print "Skipper I found $file\n";
+}
+
+

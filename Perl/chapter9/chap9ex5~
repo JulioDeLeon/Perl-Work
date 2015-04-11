@@ -1,0 +1,35 @@
+#!/usr/bin/perl -w
+use 5.0.10;
+use strict;
+
+#first make a list of files you will be appending
+my %do_these;
+for(@ARGV)
+{
+	# you have made a hash as the arguments you passed as keys
+	# you set the values to one to indicate that theses must be done
+	$do_these{$_} = 1;
+}
+
+
+#now search through the list to see if they already have the copyright tagline
+while(<>)
+{
+	if(/\A## Copyright/)
+	{
+		delete $do_these{$ARGV};
+	}
+}
+
+#now append the copyright tagline
+@ARGV = sort keys %do_these;
+$^I = "~";
+while (<>)
+{
+	
+	if(/\A#!/) #is if the shebang line?
+	{
+		$_.="## Copyright (C) 2014 by Julio de Leon \n";
+	}
+	print;
+}

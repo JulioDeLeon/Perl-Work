@@ -1,0 +1,28 @@
+#!/bin/perl -w
+use strict;
+use 5.018;
+
+#Number Guessing program:
+my $DEBUG = (defined $ARGV[0] && $ARGV[0] =~ /-d/)? 1 : undef;
+my $sn  = int( rand (100) +1) ;
+my $ins;
+print "DEBUG MODE: secret: $sn \n" if $DEBUG;
+print "enter a number: " ;
+
+while(<STDIN>) {
+	chomp;	
+#	print "you have entered: $_\n";
+
+	exit(0) when /exit/i;
+	exit(0) when /\A\s*\Z/i;
+	when($_ < $sn){print "too low\n"; print "enter a number: " ;
+ next}
+	when($_ > $sn){print "too high\n"; print "enter a number: " ;
+ next}			
+	when($_ == $sn){print "you win\n"; exit(0)}	
+
+}
+
+DONE:
+
+exit(0);

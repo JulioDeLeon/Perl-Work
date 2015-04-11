@@ -1,0 +1,6 @@
+#!/bin/perl -w 
+use strict;
+
+foreach (@ARGV){
+	print $_ ."\n" if (-e -r -w -o $_);
+}

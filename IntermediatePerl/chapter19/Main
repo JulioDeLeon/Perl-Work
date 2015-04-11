@@ -1,0 +1,9 @@
+#!/bin/perl
+use v5.18;
+use strict;
+use warnings;
+
+use Horse;
+
+my $hor = Horse->new( name => "mr ed", color => "brown");
+$hor->speak;

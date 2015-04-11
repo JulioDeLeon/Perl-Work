@@ -1,0 +1,37 @@
+#!/bin/perl -w
+use strict;
+
+my $usrin = undef;
+my $DEBUG;
+my $ALL;
+foreach my $arg (@ARGV){
+	$DEBUG = ($arg =~ /-d/)? 1 : undef;
+	$ALL = ($arg =~ /-a/)? 1 : undef;
+}
+
+print "IN DEBUG:\n" if $DEBUG;
+
+do {
+	print "Enter a path: ";
+	chomp ($usrin = <STDIN>);
+	exit if $usrin =~ /exit/i;	
+	 if ($usrin =~ /\As*\Z/){
+		#if just an empty line, change into home directory;
+		#chdir changes to home dir if no dir is specified
+		$usrin = "/home";
+		chdir or die "Cannot change to home dir\n";
+	}else {chdir $usrin or die "Cannot change to $usrin\n"}
+
+	#print contents of the dir if you have not died yet
+	
+	opendir DOT, "." or die "Cannot open dot, $!\n";
+
+	foreach (sort readdir DOT) {
+		next if ( ($_ =~ /\A\./) && (!defined $ALL));		
+		if (-d $_) {print "d ";}
+		if (-f $_) {print "f ";}
+		print "$_\n";
+	}
+	
+
+} while ( !defined $usrin || !( $usrin =~ /exit/i) );
